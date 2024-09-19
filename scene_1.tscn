@@ -7,3 +7,9 @@
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(65.0259, -53.8871)
 texture = SubResource("PlaceholderTexture2D_qwr0q")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
