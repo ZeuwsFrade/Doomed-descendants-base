@@ -1,0 +1,83 @@
+[gd_scene load_steps=2 format=3 uid="uid://df268kn3mtab7"]
+
+[ext_resource type="Script" path="res://SQL_controller.gd" id="1_agvvg"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_agvvg")
+
+[node name="InsertData" type="Button" parent="."]
+layout_mode = 0
+offset_left = 34.0
+offset_top = 43.0
+offset_right = 252.0
+offset_bottom = 114.0
+text = "Insert Data"
+
+[node name="SelectData" type="Button" parent="."]
+layout_mode = 0
+offset_left = 34.0
+offset_top = 127.0
+offset_right = 252.0
+offset_bottom = 198.0
+text = "Select Data"
+
+[node name="UploadData" type="Button" parent="."]
+layout_mode = 0
+offset_left = 34.0
+offset_top = 211.0
+offset_right = 252.0
+offset_bottom = 282.0
+text = "Upload Data"
+
+[node name="DeleteData" type="Button" parent="."]
+layout_mode = 0
+offset_left = 34.0
+offset_top = 301.0
+offset_right = 252.0
+offset_bottom = 372.0
+text = "Delete Data"
+
+[node name="CustomSelect" type="Button" parent="."]
+layout_mode = 0
+offset_left = 34.0
+offset_top = 385.0
+offset_right = 252.0
+offset_bottom = 456.0
+text = "Custom Select"
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 377.0
+offset_top = 64.0
+offset_right = 424.0
+offset_bottom = 87.0
+text = "Name
+"
+
+[node name="TextEdit" type="TextEdit" parent="."]
+layout_mode = 0
+offset_left = 434.0
+offset_top = 63.0
+offset_right = 626.0
+offset_bottom = 93.0
+
+[node name="Label2" type="Label" parent="."]
+layout_mode = 0
+offset_left = 378.0
+offset_top = 102.0
+offset_right = 425.0
+offset_bottom = 125.0
+text = "Score"
+
+[node name="TextEdit2" type="TextEdit" parent="."]
+layout_mode = 0
+offset_left = 435.0
+offset_top = 101.0
+offset_right = 627.0
+offset_bottom = 131.0
