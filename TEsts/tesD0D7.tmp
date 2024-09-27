@@ -1201,15 +1201,15 @@ tile_map_data = PackedByteArray("AAAAAAAAAAAWABAAAAABAAAAAAAWABAAAAACAAAAAAAWABA
 tile_set = SubResource("TileSet_mb8jn")
 script = ExtResource("2_5832x")
 
-[node name="Test_cahr" parent="." node_paths=PackedStringArray("tile_map") groups=["player", "turn"] instance=ExtResource("3_xa4kk")]
-position = Vector2(121, 88)
+[node name="Test_cahr" parent="." node_paths=PackedStringArray("tile_map") groups=["player"] instance=ExtResource("3_xa4kk")]
+position = Vector2(137, 88)
 tile_map = NodePath("../TileMapLayer")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(140, 77)
 zoom = Vector2(3, 3)
 
-[node name="test" type="CharacterBody2D" parent="." node_paths=PackedStringArray("tile_map") groups=["enemy", "turn"]]
+[node name="test" type="CharacterBody2D" parent="." node_paths=PackedStringArray("tile_map") groups=["enemy"]]
 position = Vector2(26, 107)
 script = ExtResource("4_g8s13")
 tile_map = NodePath("../TileMapLayer")
@@ -1221,7 +1221,7 @@ shape = SubResource("RectangleShape2D_qd3ru")
 scale = Vector2(8.5, 8)
 texture = SubResource("PlaceholderTexture2D_x51tl")
 
-[node name="test2" type="CharacterBody2D" parent="." node_paths=PackedStringArray("tile_map") groups=["enemy", "turn"]]
+[node name="test2" type="CharacterBody2D" parent="." node_paths=PackedStringArray("tile_map") groups=["enemy"]]
 position = Vector2(24, 24)
 script = ExtResource("4_g8s13")
 tile_map = NodePath("../TileMapLayer")
