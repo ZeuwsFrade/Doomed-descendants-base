@@ -5,6 +5,10 @@ extends CharacterBody2D
 const tile_width = 16
 var current_path: Array[Vector2i]
 
+var acces = {}
+
+@onready var enemy = get_tree().get_nodes_in_group("enemy")
+
 func  _physics_process(delta):
 	if current_path.is_empty():
 		return
@@ -15,6 +19,9 @@ func  _physics_process(delta):
 	pass
 
 func _unhandled_input(event):
+	for i in acces:
+		if !acces.is_empty() and acces[i] != true:
+			return
 	var input_dir := Input.get_vector("move_left", "move_right", "move_up", "move_down")
 	var direction := Vector2(floor(input_dir.x), floor(input_dir.y)).normalized()
 	if direction:
@@ -24,6 +31,12 @@ func _unhandled_input(event):
 				tile_map.local_to_map(global_position),
 				tile_map.local_to_map(global_position+direction*tile_width)
 				).slice(1)
+			
+			acces.clear()
+			get_tree().call_group("enemy", "_move")
+	
+	
+	
 	#var click_position = get_global_mouse_position()
 	#if event.is_action_pressed("move_to"):
 		#if tile_map.is_point_available(click_position):

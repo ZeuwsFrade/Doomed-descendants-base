@@ -26,7 +26,7 @@ func _process(delta: float) -> void:
 	pass
 func is_point_available(position):
 	var map_position = local_to_map(position)
-	if map_rect.has_point(map_position) and not astar.is_point_solid(map_position):
+	if map_rect.has_point(map_position) and not astar.is_point_solid(map_position) and not position in GlobalBusyPoint.global_busy_point:
 		return true
 	else:
 		return false

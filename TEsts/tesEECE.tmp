@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=4 uid="uid://dqypq616iylh"]
+[gd_scene load_steps=8 format=4 uid="uid://dqypq616iylh"]
 
 [ext_resource type="Texture2D" uid="uid://ddof5dx00xr8n" path="res://TileMap/BaseSet.png" id="1_f2oej"]
 [ext_resource type="Script" path="res://TEsts/tile_map_layer.gd" id="2_5832x"]
@@ -1189,9 +1189,6 @@ custom_data_layer_0/name = "Type"
 custom_data_layer_0/type = 4
 sources/0 = SubResource("TileSetAtlasSource_khuqa")
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_qd3ru"]
-size = Vector2(8, 8)
-
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_x51tl"]
 
 [node name="Test_lvl" type="Node2D"]
@@ -1202,7 +1199,7 @@ tile_set = SubResource("TileSet_mb8jn")
 script = ExtResource("2_5832x")
 
 [node name="Test_cahr" parent="." node_paths=PackedStringArray("tile_map") groups=["player"] instance=ExtResource("3_xa4kk")]
-position = Vector2(137, 88)
+position = Vector2(23, 25)
 tile_map = NodePath("../TileMapLayer")
 
 [node name="Camera2D" type="Camera2D" parent="."]
@@ -1210,25 +1207,12 @@ position = Vector2(140, 77)
 zoom = Vector2(3, 3)
 
 [node name="test" type="CharacterBody2D" parent="." node_paths=PackedStringArray("tile_map") groups=["enemy"]]
-position = Vector2(26, 107)
+position = Vector2(119, 24)
 script = ExtResource("4_g8s13")
 tile_map = NodePath("../TileMapLayer")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="test"]
-shape = SubResource("RectangleShape2D_qd3ru")
 
 [node name="Sprite2D" type="Sprite2D" parent="test"]
-scale = Vector2(8.5, 8)
-texture = SubResource("PlaceholderTexture2D_x51tl")
-
-[node name="test2" type="CharacterBody2D" parent="." node_paths=PackedStringArray("tile_map") groups=["enemy"]]
-position = Vector2(24, 24)
-script = ExtResource("4_g8s13")
-tile_map = NodePath("../TileMapLayer")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="test2"]
-shape = SubResource("RectangleShape2D_qd3ru")
-
-[node name="Sprite2D" type="Sprite2D" parent="test2"]
 scale = Vector2(8.5, 8)
 texture = SubResource("PlaceholderTexture2D_x51tl")
