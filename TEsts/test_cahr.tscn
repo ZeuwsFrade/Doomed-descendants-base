@@ -5,7 +5,7 @@
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_mpdg1"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_woq5w"]
-size = Vector2(8.21875, 8)
+size = Vector2(16, 16)
 
 [node name="Test_cahr" type="CharacterBody2D"]
 script = ExtResource("1_4vsnn")

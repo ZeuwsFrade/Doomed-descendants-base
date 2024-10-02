@@ -7,8 +7,7 @@ var current_path: Array[Vector2i]
 var beta_current_path: Array[Vector2i]
 var next_pos = Vector2i()
 
-var range = 1 # можно цикл е
-var is_turn = false
+var range = 2
 
 @onready var player = get_tree().get_nodes_in_group("player")[0]
 
@@ -17,13 +16,12 @@ func _turn_end():
 
 func  _moving():
 	if current_path.is_empty():
-		_turn_end()
 		return
 	var target_position = tile_map.map_to_local(current_path.front())
-	global_position = global_position.move_toward(target_position, SPEED)
+	global_position = global_position.move_toward(target_position, SPEED*delta)
 	if global_position == target_position:
 		current_path.pop_front()
-	_moving()
+	pass
 
 func _move():
 	beta_current_path = tile_map.astar.get_id_path(

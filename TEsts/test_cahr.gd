@@ -4,8 +4,12 @@ extends CharacterBody2D
 @export var SPEED = 200
 const tile_width = 16
 var current_path: Array[Vector2i]
+<<<<<<< Updated upstream
 
 var is_my_turn = true
+=======
+var acces = {}
+>>>>>>> Stashed changes
 
 #@onready var enemy = get_tree().get_nodes_in_group("enemy")
 
@@ -15,6 +19,7 @@ func _turn_end():
 
 func _moving():
 	if current_path.is_empty():
+<<<<<<< Updated upstream
 		_turn_end()
 		return
 	var target_position = tile_map.map_to_local(current_path.front())
@@ -26,6 +31,16 @@ func _moving():
 
 func _move():
 	is_my_turn = true
+=======
+		if global_position not in global_busy_point.global_busy_point:
+			global_busy_point.global_busy_point.append(global_position)
+		return
+	var target_position = tile_map.map_to_local(current_path.front())
+	global_position = target_position
+	if global_position == target_position:
+		current_path.pop_front()
+		global_busy_point.global_busy_point.clear()
+>>>>>>> Stashed changes
 
 func _unhandled_input(event):
 	if !current_path.is_empty(): return

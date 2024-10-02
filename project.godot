@@ -17,7 +17,7 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-GlobalBusyPoint="*res://global_busy_point.gd"
+global_busy_point="*res://global_busy_point.gd"
 
 [dotnet]
 

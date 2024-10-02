@@ -1190,7 +1190,7 @@ custom_data_layer_0/type = 4
 sources/0 = SubResource("TileSetAtlasSource_khuqa")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qd3ru"]
-size = Vector2(8, 8)
+size = Vector2(16, 16)
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_x51tl"]
 
@@ -1201,16 +1201,26 @@ tile_map_data = PackedByteArray("AAAAAAAAAAAWABAAAAABAAAAAAAWABAAAAACAAAAAAAWABA
 tile_set = SubResource("TileSet_mb8jn")
 script = ExtResource("2_5832x")
 
+<<<<<<< Updated upstream
 [node name="Test_cahr" parent="." node_paths=PackedStringArray("tile_map") groups=["player", "turn"] instance=ExtResource("3_xa4kk")]
 position = Vector2(121, 88)
+=======
+[node name="Test_cahr" parent="." node_paths=PackedStringArray("tile_map") groups=["player"] instance=ExtResource("3_xa4kk")]
+position = Vector2(136, 88)
+>>>>>>> Stashed changes
 tile_map = NodePath("../TileMapLayer")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(140, 77)
 zoom = Vector2(3, 3)
 
+<<<<<<< Updated upstream
 [node name="test" type="CharacterBody2D" parent="." node_paths=PackedStringArray("tile_map") groups=["enemy", "turn"]]
 position = Vector2(26, 107)
+=======
+[node name="test" type="CharacterBody2D" parent="." node_paths=PackedStringArray("tile_map") groups=["enemy"]]
+position = Vector2(24, 104)
+>>>>>>> Stashed changes
 script = ExtResource("4_g8s13")
 tile_map = NodePath("../TileMapLayer")
 

@@ -24,6 +24,7 @@ func _ready() -> void:
 
 func is_point_available(position):
 	var map_position = local_to_map(position)
+<<<<<<< Updated upstream
 	
 	var _pos = Vector2(position.x, position.y)
 	
@@ -32,6 +33,9 @@ func is_point_available(position):
 			return false
 	
 	if map_rect.has_point(map_position) and not astar.is_point_solid(map_position):
+=======
+	if map_rect.has_point(map_position) and not astar.is_point_solid(map_position) and not position in global_busy_point.global_busy_point:
+>>>>>>> Stashed changes
 		return true
 	else:
 		return false
