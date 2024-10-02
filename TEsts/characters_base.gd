@@ -2,7 +2,6 @@ extends CharacterBody2D
 
 @export var tile_map: TileMapLayer
 @export var SPEED = 200
-const tile_width = 16
 var current_path: Array[Vector2i]
 
 var health = 200

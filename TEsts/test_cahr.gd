@@ -2,7 +2,7 @@ extends "res://TEsts/characters_base.gd"
 #@onready var enemy = get_tree().get_nodes_in_group("enemy")
 
 func _deploy() -> void:
-	health = 200
+	health = 20099
 	damage = 20
 
 func _turn_end():
@@ -32,27 +32,27 @@ func _unhandled_input(event):
 	
 	var direction = Vector2()
 	
-	if Input.is_action_pressed("move_left"):
+	if Input.is_action_just_pressed("move_left"):
 		_move(Vector2(-1,0))
 		return
 		
-	if Input.is_action_pressed("move_right"):
+	if Input.is_action_just_pressed("move_right"):
 		_move(Vector2(1,0))
 		return
 		
-	if Input.is_action_pressed("move_up"):
+	if Input.is_action_just_pressed("move_up"):
 		_move(Vector2(0,-1))
 		return
 		
-	if Input.is_action_pressed("move_down"):
+	if Input.is_action_just_pressed("move_down"):
 		_move(Vector2(0,1))
 		return
 
 func _move(direction):
-	if tile_map.is_point_available(global_position+direction*tile_width):
+	if tile_map.is_point_available(global_position+direction*GlobalBusyPoint.tile_width):
 		current_path = tile_map.astar.get_id_path(
 			tile_map.local_to_map(global_position),
-			tile_map.local_to_map(global_position+direction*tile_width)
+			tile_map.local_to_map(global_position+direction*GlobalBusyPoint.tile_width)
 			).slice(1)
 	_moving()
 

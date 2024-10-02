@@ -1,11 +1,13 @@
 extends "res://TEsts/characters_base.gd"
 var beta_current_path: Array[Vector2i]
 var next_pos = Vector2i()
+var past_pos = Vector2i()
 
 var range = 1 # можно цикл е
 var is_turn = false
 
 @onready var player = get_tree().get_nodes_in_group("player")[0]
+@onready var mobs = get_tree().get_nodes_in_group("enemy")
 
 func _deploy() -> void:
 	health = 100
@@ -28,11 +30,16 @@ func _attack():
 	player._take_damage( damage, self )
 	_turn_end()
 
+var a = []
+
 func _move():
 	beta_current_path = tile_map.astar.get_id_path(
 		tile_map.local_to_map(global_position),
 		tile_map.local_to_map(player.global_position)
 		).slice(1)
+	if beta_current_path.is_empty():
+		_turn_end()
+		return
 	if beta_current_path.size() > range:
 		beta_current_path.resize(range)
 		next_pos = beta_current_path.back()
@@ -43,7 +50,20 @@ func _move():
 		_turn_end()
 
 func _turn_start():
-	if global_position.distance_squared_to(player.global_position) <= 256:
+	if global_position.distance_squared_to(player.global_position) <= GlobalBusyPoint.tile_width*GlobalBusyPoint.tile_width:
 		_attack()
 	else:
 		_move()
+
+
+	#if beta_current_path.is_empty():
+		#a = mobs
+		#a.sort_custom(func(a, b): return a.global_position.distance_squared_to(player.global_position) > b.global_position.distance_squared_to(player.global_position))
+		#for i in a:
+			#if i == self: continue
+			#beta_current_path = tile_map.astar.get_id_path(
+			#	tile_map.local_to_map(global_position),
+			#	tile_map.local_to_map(i.global_position)
+			#).slice(1)
+			#if !beta_current_path.is_empty():
+			#	break
