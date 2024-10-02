@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
 @export var tile_map: TileMapLayer
-@export var SPEED = 2
+@export var SPEED = 200
 const tile_width = 16
 var current_path: Array[Vector2i]
 var beta_current_path: Array[Vector2i]
@@ -12,8 +12,12 @@ var is_turn = false
 
 @onready var player = get_tree().get_nodes_in_group("player")[0]
 
+func _turn_end():
+	GlobalBusyPoint._turn()
+
 func  _moving():
 	if current_path.is_empty():
+		_turn_end()
 		return
 	var target_position = tile_map.map_to_local(current_path.front())
 	global_position = global_position.move_toward(target_position, SPEED)
@@ -32,3 +36,5 @@ func _move():
 	if tile_map.is_point_available(tile_map.map_to_local(beta_current_path.back())):
 		current_path = beta_current_path
 		_moving()
+	else:
+		_turn_end()

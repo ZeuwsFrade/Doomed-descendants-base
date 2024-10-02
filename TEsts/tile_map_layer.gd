@@ -18,23 +18,18 @@ func _ready() -> void:
 			var tile_data = get_cell_tile_data(coords)
 			if tile_data and tile_data.get_custom_data('Type') == 'Wall':
 				astar.set_point_solid(coords)
-	pass # Replace with function body.
 
 
-@onready var player = get_tree().get_nodes_in_group("player")[0]
-@onready var enemy = get_tree().get_nodes_in_group("enemy")
+@onready var objs = get_tree().get_nodes_in_group("turn")
 
 func is_point_available(position):
 	var map_position = local_to_map(position)
 	
 	var _pos = Vector2(position.x, position.y)
 	
-	for i in enemy:
+	for i in objs:
 		if i.global_position == _pos:
 			return false
-	
-	if player.global_position == _pos:
-		return false
 	
 	if map_rect.has_point(map_position) and not astar.is_point_solid(map_position):
 		return true
