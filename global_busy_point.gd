@@ -7,7 +7,6 @@ var i = 0
 
 func _turn():
 	objects = get_tree().get_nodes_in_group("turn")
-	print(i)
 	if i < objects.size()-1:
 		i=i+1
 	else:

@@ -1210,7 +1210,7 @@ position = Vector2(140, 77)
 zoom = Vector2(3, 3)
 
 [node name="test" type="CharacterBody2D" parent="." node_paths=PackedStringArray("tile_map") groups=["enemy", "turn"]]
-position = Vector2(26, 107)
+position = Vector2(22, 23)
 script = ExtResource("4_g8s13")
 tile_map = NodePath("../TileMapLayer")
 
@@ -1222,7 +1222,7 @@ scale = Vector2(8.5, 8)
 texture = SubResource("PlaceholderTexture2D_x51tl")
 
 [node name="test2" type="CharacterBody2D" parent="." node_paths=PackedStringArray("tile_map") groups=["enemy", "turn"]]
-position = Vector2(24, 24)
+position = Vector2(25, 104)
 script = ExtResource("4_g8s13")
 tile_map = NodePath("../TileMapLayer")
 

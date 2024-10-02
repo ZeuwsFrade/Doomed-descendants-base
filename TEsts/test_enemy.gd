@@ -25,16 +25,23 @@ func  _moving():
 		current_path.pop_front()
 	_moving()
 
+func _attack():
+	print(self, " attaking: ", player)
+	_turn_end()
+
 func _move():
-	beta_current_path = tile_map.astar.get_id_path(
-		tile_map.local_to_map(global_position),
-		tile_map.local_to_map(player.global_position)
-		).slice(1)
-	if beta_current_path.size() > range:
-		beta_current_path.resize(range)
-		next_pos = beta_current_path.back()
-	if tile_map.is_point_available(tile_map.map_to_local(beta_current_path.back())):
-		current_path = beta_current_path
-		_moving()
+	if global_position.distance_squared_to(player.global_position) <= 256:
+		_attack()
 	else:
-		_turn_end()
+		beta_current_path = tile_map.astar.get_id_path(
+			tile_map.local_to_map(global_position),
+			tile_map.local_to_map(player.global_position)
+			).slice(1)
+		if beta_current_path.size() > range:
+			beta_current_path.resize(range)
+			next_pos = beta_current_path.back()
+		if tile_map.is_point_available(tile_map.map_to_local(beta_current_path.back())):
+			current_path = beta_current_path
+			_moving()
+		else:
+			_turn_end()
