@@ -11,7 +11,7 @@ func _turn():
 		i=i+1
 	else:
 		i=0
-	objects[i]._move()
+	objects[i]._turn_start()
 
 func _process(delta: float) -> void:
 	pass

@@ -1,13 +1,9 @@
-extends CharacterBody2D
-
-@export var tile_map: TileMapLayer
-@export var SPEED = 200
-const tile_width = 16
-var current_path: Array[Vector2i]
-
-var is_my_turn = true
-
+extends "res://TEsts/characters_base.gd"
 #@onready var enemy = get_tree().get_nodes_in_group("enemy")
+
+func _ready() -> void:
+	health = 200
+	damage = 20
 
 func _turn_end():
 	is_my_turn = false
@@ -24,7 +20,7 @@ func _moving():
 		current_path.pop_front()
 	_moving()
 
-func _move():
+func _turn_start():
 	is_my_turn = true
 
 func _unhandled_input(event):
@@ -37,22 +33,22 @@ func _unhandled_input(event):
 	var direction = Vector2()
 	
 	if Input.is_action_pressed("move_left"):
-		_input_move(Vector2(-1,0))
+		_move(Vector2(-1,0))
 		return
 		
 	if Input.is_action_pressed("move_right"):
-		_input_move(Vector2(1,0))
+		_move(Vector2(1,0))
 		return
 		
 	if Input.is_action_pressed("move_up"):
-		_input_move(Vector2(0,-1))
+		_move(Vector2(0,-1))
 		return
 		
 	if Input.is_action_pressed("move_down"):
-		_input_move(Vector2(0,1))
+		_move(Vector2(0,1))
 		return
 
-func _input_move(direction):
+func _move(direction):
 	if tile_map.is_point_available(global_position+direction*tile_width):
 		current_path = tile_map.astar.get_id_path(
 			tile_map.local_to_map(global_position),
