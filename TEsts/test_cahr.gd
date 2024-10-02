@@ -1,7 +1,7 @@
 extends "res://TEsts/characters_base.gd"
 #@onready var enemy = get_tree().get_nodes_in_group("enemy")
 
-func _ready() -> void:
+func _deploy() -> void:
 	health = 200
 	damage = 20
 
@@ -54,7 +54,7 @@ func _move(direction):
 			tile_map.local_to_map(global_position),
 			tile_map.local_to_map(global_position+direction*tile_width)
 			).slice(1)
-		_moving()
+	_moving()
 
 	#var click_position = get_global_mouse_position()
 	#if event.is_action_pressed("move_to"):

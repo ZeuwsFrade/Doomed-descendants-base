@@ -7,7 +7,7 @@ var is_turn = false
 
 @onready var player = get_tree().get_nodes_in_group("player")[0]
 
-func _ready() -> void:
+func _deploy() -> void:
 	health = 100
 	damage = 10
 

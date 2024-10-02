@@ -19,7 +19,6 @@ func _ready() -> void:
 			if tile_data and tile_data.get_custom_data('Type') == 'Wall':
 				astar.set_point_solid(coords)
 
-
 @onready var objs = get_tree().get_nodes_in_group("turn")
 
 func is_point_available(position):
