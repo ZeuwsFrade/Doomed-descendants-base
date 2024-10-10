@@ -6,6 +6,10 @@ func _deploy() -> void:
 	health = 20099
 	damage = 20
 
+func _deploy() -> void:
+	health = 20099
+	damage = 20
+
 func _turn_end():
 	is_my_turn = false
 	GlobalBusyPoint._turn()

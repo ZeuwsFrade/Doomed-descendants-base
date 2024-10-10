@@ -29,8 +29,12 @@ func  _moving():
 func _attack():
 	player._take_damage( damage, self )
 	_turn_end()
+<<<<<<< HEAD
 func die():
 	queue_free()
+=======
+
+>>>>>>> origin/master
 var a = []
 
 func _move():
@@ -56,6 +60,7 @@ func _turn_start():
 	else:
 		_move()
 
+<<<<<<< HEAD
 func _on_mob_zone_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
 	if event.is_action_pressed("Attack") and player.aim_selected == false:
 		if selected == false:
@@ -66,6 +71,8 @@ func _on_mob_zone_input_event(viewport: Node, event: InputEvent, shape_idx: int)
 			remove_from_group("selected")
 			selected = false
 			player.aim_selected = false
+=======
+>>>>>>> origin/master
 
 	#if beta_current_path.is_empty():
 		#a = mobs
