@@ -17,7 +17,7 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-global_busy_point="*res://global_busy_point.gd"
+GlobalBusyPoint="*res://global_busy_point.gd"
 
 [dotnet]
 
@@ -28,11 +28,20 @@ project/assembly_name="Kursach_nadeyus"
 version_control/plugin_name="GitPlugin"
 version_control/autoload_on_startup=true
 
+[global_group]
+
+del="d"
+
 [input]
 
-move_to={
+Attack={
 "deadzone": 0.5,
 "events": [Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"button_mask":1,"position":Vector2(141, 14),"global_position":Vector2(150, 60),"factor":1.0,"button_index":1,"canceled":false,"pressed":true,"double_click":false,"script":null)
+]
+}
+Interact={
+"deadzone": 0.5,
+"events": [Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"button_mask":2,"position":Vector2(132, 15),"global_position":Vector2(141, 61),"factor":1.0,"button_index":2,"canceled":false,"pressed":true,"double_click":false,"script":null)
 ]
 }
 move_left={

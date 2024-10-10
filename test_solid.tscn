@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://ddrxqnrnfdmki"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_qb2je"]
+size = Vector2(16, 16)
+
+[node name="Test_solid" type="Node2D" groups=["del"]]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(0.658753, 0.438955, 1.92523e-07, 1)
+scale = Vector2(1.18249, 1.08427)
+texture = SubResource("PlaceholderTexture2D_qb2je")

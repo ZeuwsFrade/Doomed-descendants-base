@@ -1,17 +1,10 @@
-extends CharacterBody2D
-
-@export var tile_map: TileMapLayer
-@export var SPEED = 200
-const tile_width = 16
-var current_path: Array[Vector2i]
-<<<<<<< Updated upstream
-
-var is_my_turn = true
-=======
-var acces = {}
->>>>>>> Stashed changes
-
+extends "res://TEsts/characters_base.gd"
 #@onready var enemy = get_tree().get_nodes_in_group("enemy")
+var aim_selected = false
+var enemy_sel
+func _deploy() -> void:
+	health = 20099
+	damage = 20
 
 func _turn_end():
 	is_my_turn = false
@@ -19,7 +12,6 @@ func _turn_end():
 
 func _moving():
 	if current_path.is_empty():
-<<<<<<< Updated upstream
 		_turn_end()
 		return
 	var target_position = tile_map.map_to_local(current_path.front())
@@ -29,18 +21,20 @@ func _moving():
 		current_path.pop_front()
 	_moving()
 
-func _move():
+func _turn_start():
 	is_my_turn = true
-=======
-		if global_position not in global_busy_point.global_busy_point:
-			global_busy_point.global_busy_point.append(global_position)
-		return
-	var target_position = tile_map.map_to_local(current_path.front())
-	global_position = target_position
-	if global_position == target_position:
-		current_path.pop_front()
-		global_busy_point.global_busy_point.clear()
->>>>>>> Stashed changes
+
+func _input(event):
+	if Input.is_action_pressed("Attack") and aim_selected == true:
+		if get_tree().get_nodes_in_group("selected").size() > 0:
+			enemy_sel = get_tree().get_nodes_in_group("selected")[0]
+			if enemy_sel.global_position.distance_squared_to(self.global_position) <= 256:
+				aim_selected = false
+				print(aim_selected)
+				get_tree().get_nodes_in_group("selected")[0].die()
+				_turn_end()
+	if Input.is_action_pressed("Interact"):
+		_turn_end()
 
 func _unhandled_input(event):
 	if !current_path.is_empty(): return
@@ -51,29 +45,29 @@ func _unhandled_input(event):
 	
 	var direction = Vector2()
 	
-	if Input.is_action_pressed("move_left"):
-		_input_move(Vector2(-1,0))
+	if Input.is_action_just_pressed("move_left"):
+		_move(Vector2(-1,0))
 		return
 		
-	if Input.is_action_pressed("move_right"):
-		_input_move(Vector2(1,0))
+	if Input.is_action_just_pressed("move_right"):
+		_move(Vector2(1,0))
 		return
 		
-	if Input.is_action_pressed("move_up"):
-		_input_move(Vector2(0,-1))
+	if Input.is_action_just_pressed("move_up"):
+		_move(Vector2(0,-1))
 		return
 		
-	if Input.is_action_pressed("move_down"):
-		_input_move(Vector2(0,1))
+	if Input.is_action_just_pressed("move_down"):
+		_move(Vector2(0,1))
 		return
 
-func _input_move(direction):
-	if tile_map.is_point_available(global_position+direction*tile_width):
+func _move(direction):
+	if tile_map.is_point_available(global_position+direction*GlobalBusyPoint.tile_width):
 		current_path = tile_map.astar.get_id_path(
 			tile_map.local_to_map(global_position),
-			tile_map.local_to_map(global_position+direction*tile_width)
+			tile_map.local_to_map(global_position+direction*GlobalBusyPoint.tile_width)
 			).slice(1)
-		_moving()
+	_moving()
 
 	#var click_position = get_global_mouse_position()
 	#if event.is_action_pressed("move_to"):
