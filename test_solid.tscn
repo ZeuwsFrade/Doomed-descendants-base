@@ -1,9 +1,9 @@
-[gd_scene load_steps=2 format=3 uid="uid://ddrxqnrnfdmki"]
+[gd_scene load_steps=2 format=3 uid="uid://bh8wosdgbiok3"]
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_qb2je"]
 size = Vector2(16, 16)
 
-[node name="Test_solid" type="Node2D" groups=["del"]]
+[node name="Test_solid" type="Node2D"]
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 modulate = Color(0.658753, 0.438955, 1.92523e-07, 1)

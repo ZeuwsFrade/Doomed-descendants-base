@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://df268kn3mtab7"]
 
-[ext_resource type="Script" path="res://SQL_controller.gd" id="1_agvvg"]
+[ext_resource type="Script" path="res://scripts/SQL_controller.gd" id="1_agvvg"]
 
 [node name="Control" type="Control"]
 layout_mode = 3
