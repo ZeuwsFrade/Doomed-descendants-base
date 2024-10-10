@@ -13,10 +13,10 @@ signal OnDamaged( dmg, attacker)
 signal OnDead()
 
 func _on_damaged(dmg, attacker):
-	print(attacker, " нанёс ", dmg, " урона ", self)
+	print(attacker.name, " нанёс ", dmg, " урона ", self.name)
 
 func _on_dead():
-	print(self, " погиб")
+	print(self.name, " погиб")
 
 func _ready() -> void:
 	connect("OnDamaged", _on_damaged)

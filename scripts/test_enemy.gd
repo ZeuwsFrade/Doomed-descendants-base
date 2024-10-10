@@ -1,11 +1,11 @@
-extends "res://TEsts/characters_base.gd"
+extends "res://scripts/characters_base.gd"
 var beta_current_path: Array[Vector2i]
 var next_pos = Vector2i()
 var past_pos = Vector2i()
 
 var range = 1 # можно цикл е
 var is_turn = false
-var selected = false
+
 @onready var player = get_tree().get_nodes_in_group("player")[0]
 @onready var mobs = get_tree().get_nodes_in_group("enemy")
 
@@ -29,13 +29,6 @@ func  _moving():
 func _attack():
 	player._take_damage( damage, self )
 	_turn_end()
-<<<<<<< HEAD
-func die():
-	queue_free()
-=======
-
->>>>>>> origin/master
-var a = []
 
 func _move():
 	beta_current_path = tile_map.astar.get_id_path(
@@ -60,28 +53,11 @@ func _turn_start():
 	else:
 		_move()
 
-<<<<<<< HEAD
-func _on_mob_zone_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
-	if event.is_action_pressed("Attack") and player.aim_selected == false:
-		if selected == false:
-			add_to_group("selected")
-			selected = true
-			player.aim_selected = true
-		else:
+func _on_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
+	if event.is_action_pressed("LMB"):
+		if self.is_in_group("selected"):
 			remove_from_group("selected")
-			selected = false
-			player.aim_selected = false
-=======
->>>>>>> origin/master
-
-	#if beta_current_path.is_empty():
-		#a = mobs
-		#a.sort_custom(func(a, b): return a.global_position.distance_squared_to(player.global_position) > b.global_position.distance_squared_to(player.global_position))
-		#for i in a:
-			#if i == self: continue
-			#beta_current_path = tile_map.astar.get_id_path(
-			#	tile_map.local_to_map(global_position),
-			#	tile_map.local_to_map(i.global_position)
-			#).slice(1)
-			#if !beta_current_path.is_empty():
-			#	break
+			print(self.name, " is deselected")
+		else:
+			add_to_group("selected")
+			print(self.name, " is selected")

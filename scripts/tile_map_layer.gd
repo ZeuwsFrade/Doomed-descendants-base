@@ -29,23 +29,25 @@ var obj_colliders = []
 func _re_solid( obj ):
 	if !obj_colliders.is_empty():
 		for vec in obj_colliders:
+			if vec == null: continue
 			astar.set_point_solid( vec, false )
 		obj_colliders.clear()
 		
 	obj_colliders.resize(objs.size())
 	
 	for i in range(0, objs.size()):
+		if objs[i] == null:
+			continue
 		obj_colliders[i] = local_to_map(objs[i].global_position)
 		if obj != objs[i] and player.global_position != objs[i].global_position:
 			if objs[i].global_position.distance_squared_to(obj.global_position) < GlobalBusyPoint.tile_width*GlobalBusyPoint.tile_width * 2 + GlobalBusyPoint.tile_width:
 				astar.set_point_solid( obj_colliders[i], true)
-	
 
-func is_point_available(position):
+func is_point_available(pos):
 	objs = get_tree().get_nodes_in_group("turn")
-	var map_position = local_to_map(position)
+	var map_position = local_to_map(pos)
 	
-	var _pos = Vector2(position.x, position.y)
+	var _pos = Vector2(pos.x, pos.y)
 	
 	for i in objs:
 		if i.global_position == _pos:
