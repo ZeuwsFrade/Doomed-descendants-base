@@ -35,6 +35,9 @@ func _re_solid( obj ):
 		
 	obj_colliders.resize(objs.size())
 	
+	if obj == null:
+		return
+	
 	for i in range(0, objs.size()):
 		if objs[i] == null:
 			continue

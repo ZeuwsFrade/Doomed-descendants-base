@@ -1203,17 +1203,17 @@ zoom = Vector2(3, 3)
 [node name="Entities" type="Node2D" parent="."]
 
 [node name="Player" parent="Entities" node_paths=PackedStringArray("tile_map") instance=ExtResource("3_xa4kk")]
-position = Vector2(136, 89)
+position = Vector2(200, 135)
 tile_map = NodePath("../../TileMapLayer")
 
 [node name="Enemy" parent="Entities" node_paths=PackedStringArray("tile_map") instance=ExtResource("4_dei5p")]
-position = Vector2(26, 73)
+position = Vector2(25, 135)
 tile_map = NodePath("../../TileMapLayer")
 
 [node name="Enemy2" parent="Entities" node_paths=PackedStringArray("tile_map") instance=ExtResource("4_dei5p")]
-position = Vector2(27, 107)
+position = Vector2(25, 105)
 tile_map = NodePath("../../TileMapLayer")
 
 [node name="Enemy3" parent="Entities" node_paths=PackedStringArray("tile_map") instance=ExtResource("4_dei5p")]
-position = Vector2(26, 23)
+position = Vector2(26, 119)
 tile_map = NodePath("../../TileMapLayer")

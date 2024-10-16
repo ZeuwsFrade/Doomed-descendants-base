@@ -9,8 +9,12 @@ var damage = 10
 
 var is_my_turn = true
 
-signal OnDamaged( dmg, attacker)
+signal OnDamaged( dmg, attacker )
 signal OnDead()
+#signal TurnEnd()
+#signal TurnStart()
+
+
 
 func _on_damaged(dmg, attacker):
 	print(attacker.name, " нанёс ", dmg, " урона ", self.name)
@@ -30,8 +34,8 @@ func _take_damage( dmg, attacker ):
 	health = health - dmg
 	OnDamaged.emit(dmg, attacker)
 	if health < 0:
-		_death()
+		_die()
 
-func _death():
+func _die():
 	OnDead.emit()
 	queue_free()

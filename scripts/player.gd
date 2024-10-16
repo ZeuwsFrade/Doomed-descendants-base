@@ -1,10 +1,15 @@
 extends "res://scripts/characters_base.gd"
 #@onready var enemy = get_tree().get_nodes_in_group("enemy")
 var enemy_sel
+var visible_objs = []
+var vision_range = 6
+
+@onready var vision = $Vision
 
 func _deploy() -> void:
 	health = 20099
 	damage = 20
+	vision.scale = Vector2(vision_range*2,vision_range*2)
 
 func _turn_end():
 	print()
@@ -29,7 +34,7 @@ func _input(event):
 	if event.is_action_pressed("LMB"):
 		if get_tree().get_nodes_in_group("selected").size() > 0:
 			enemy_sel = get_tree().get_nodes_in_group("selected")[0]
-			if enemy_sel.global_position.distance_squared_to(self.global_position) <= 256:
+			if enemy_sel.global_position.distance_squared_to(self.global_position) <= GlobalBusyPoint.tile_width*GlobalBusyPoint.tile_width:
 				enemy_sel._take_damage(10, self)
 				_turn_end()
 	if event.is_action_pressed("RMB"):
@@ -66,11 +71,31 @@ func _move(direction):
 			tile_map.local_to_map(global_position+direction*GlobalBusyPoint.tile_width)
 			).slice(1)
 	_moving()
+	#_visible()
 
-	#var click_position = get_global_mouse_position()
-	#if event.is_action_pressed("move_to"):
-		#if tile_map.is_point_available(click_position):
-			#current_path = tile_map.astar.get_id_path(
-				#tile_map.local_to_map(global_position),
-				#tile_map.local_to_map(click_position)
-			#).slice(1)
+func _raycast( pos_end: Vector2, body ):
+	var New_Intersection = PhysicsRayQueryParameters2D.create(self.position, pos_end)
+	New_Intersection.exclude = [self, body]
+	New_Intersection.collision_mask = pow(2, 1-1)
+	var Intersection = get_world_2d().direct_space_state.intersect_ray(New_Intersection)
+	return Intersection
+	
+func _on_vision_body_entered(body: Node2D) -> void:
+	if body.is_in_group("turn"):
+		if !visible_objs.has(body):
+				visible_objs.push_back(body)
+		if _raycast(body.position, body).is_empty():
+			body.visible = true
+
+func _on_vision_body_exited(body: Node2D) -> void:
+	if body.is_in_group("turn"):
+		if visible_objs.has(body):
+			visible_objs.remove_at(visible_objs.find(body))
+		body.visible = false
+
+func _visible():
+	for i in visible_objs:
+		if _raycast(i.position, i).is_empty():
+			i.visible = true
+		else:
+			i.visible = false

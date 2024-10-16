@@ -9,6 +9,8 @@ size = Vector2(8, 8)
 size = Vector2(8, 8)
 
 [node name="Enemy" type="CharacterBody2D" groups=["enemy", "turn"]]
+collision_layer = 8
+collision_mask = 8
 input_pickable = true
 script = ExtResource("1_hc262")
 
