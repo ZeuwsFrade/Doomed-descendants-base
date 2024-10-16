@@ -34,7 +34,6 @@ func _input(event):
 				_turn_end()
 	if event.is_action_pressed("RMB"):
 		_turn_end()
-		
 	if !current_path.is_empty(): return
 	if !is_my_turn: return
 

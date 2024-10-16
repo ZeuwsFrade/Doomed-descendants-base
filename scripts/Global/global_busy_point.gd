@@ -16,10 +16,9 @@ func _turn():
 		i=i+1
 	else:
 		i=0
-	
 	objects[i].remove_from_group("selected")
 	tilemap._re_solid( objects[i] )
 	objects[i]._turn_start()
 
-#func _process(delta: float) -> void:
-#	pass
+func _process(delta: float) -> void:
+	pass

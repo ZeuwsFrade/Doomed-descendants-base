@@ -1,0 +1,17 @@
+{
+  "leather_jacket": {
+    "name": "Кожаная куртка",
+    "description": "Обычная кожаная куртка",
+	"icon": "jacket_icon.png"
+  },
+  "leather_boots": {
+    "name": "Кожаные сапоги",
+    "description": "Обычные кожаные сапоги",
+	"icon": "boots_icon.png"
+  },
+  "sword": {
+    "name": "Меч",
+    "description": "Старый ржавый меч",
+	"icon": "sword_icon.png"
+  }
+}
