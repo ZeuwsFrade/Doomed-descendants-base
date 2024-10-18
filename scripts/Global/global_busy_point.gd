@@ -2,7 +2,7 @@ extends Node
 
 var global_busy_point = []
 
-const tile_width = 16
+const tile_width = 64
 
 var objects
 var i = 0

@@ -1,4 +1,4 @@
-extends "res://scripts/characters_base.gd"
+extends CharecterBase
 var beta_current_path: Array[Vector2i]
 var next_pos = Vector2i()
 var past_pos = Vector2i()
