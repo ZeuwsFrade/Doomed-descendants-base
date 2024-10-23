@@ -4,9 +4,22 @@
 script/source = "extends ColorRect
 
 @onready var item_icon = %Item_icon
+@onready var Item_type = $Item_type
+@export var type = \"type\"
+@export var clas = \"class\"
+
+func _ready():
+	if type == \"weapon\":
+		Item_type.text = \"W\"
+	elif type == \"armor\":
+		Item_type.text = \"A\"
+	elif type == \"accessories\":
+		Item_type.text = \"K\"
+	elif type == \"consumables\":
+		Item_type.text = \"C\"
 
 func display_item(item):
-	if item:
+	if item and item.type == type:
 		item_icon.texture = load(\"res://Icons/%s\" % item.icon)
 	else:
 		item_icon.texture = null
@@ -36,3 +49,17 @@ offset_top = 8.0
 offset_right = 56.0
 offset_bottom = 56.0
 expand_mode = 2
+
+[node name="Item_type" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -17.0
+offset_top = -23.0
+grow_horizontal = 0
+grow_vertical = 0
+horizontal_alignment = 3
+vertical_alignment = 1

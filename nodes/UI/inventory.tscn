@@ -1,7 +1,18 @@
-[gd_scene load_steps=3 format=3 uid="uid://b8r6tjf646i4j"]
+[gd_scene load_steps=7 format=3 uid="uid://b8r6tjf646i4j"]
 
 [ext_resource type="Script" path="res://scripts/inventory.gd" id="1_1h2mc"]
 [ext_resource type="Script" path="res://scripts/inventory_menu.gd" id="1_2br22"]
+[ext_resource type="Texture2D" uid="uid://buvxx027jtws7" path="res://Icons/Human_body.png" id="2_cp8yy"]
+[ext_resource type="PackedScene" uid="uid://q4nbck60k6q7" path="res://nodes/UI/items_slot.tscn" id="3_epc25"]
+[ext_resource type="PackedScene" uid="uid://b5ie0ptayk8m" path="res://nodes/UI/drag_preview.tscn" id="5_bkpgx"]
+
+[sub_resource type="GDScript" id="GDScript_k6qfn"]
+script/source = "extends ContainerSlot
+
+func _ready():
+	var slots = create_item_slot(1,3)
+	display_item_slot(InventoryAccess.items, slots)
+"
 
 [node name="Inventory" type="Control"]
 layout_mode = 3
@@ -12,16 +23,113 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_1h2mc")
 
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 0
+offset_right = 1152.0
+offset_bottom = 648.0
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_direction = 1
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -150.0
+offset_right = 153.0
+offset_bottom = 483.0
+grow_horizontal = 2
+texture = ExtResource("2_cp8yy")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Item_rect" parent="TextureRect" instance=ExtResource("3_epc25")]
+layout_mode = 1
+anchors_preset = 4
+anchor_left = 0.0
+anchor_right = 0.0
+offset_left = 46.0
+offset_top = -11.5
+offset_right = 110.0
+offset_bottom = 52.5
+grow_horizontal = 1
+type = "weapon"
+
+[node name="Item_rect2" parent="TextureRect" instance=ExtResource("3_epc25")]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -101.0
+offset_top = -18.5
+offset_right = -37.0
+offset_bottom = 45.5
+grow_horizontal = 0
+type = "weapon"
+
+[node name="Item_rect4" parent="TextureRect" instance=ExtResource("3_epc25")]
+layout_mode = 2
+anchors_preset = 0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 119.0
+offset_top = 100.0
+offset_right = 183.0
+offset_bottom = 164.0
+type = "armor"
+
+[node name="Item_rect5" parent="TextureRect" instance=ExtResource("3_epc25")]
+layout_mode = 1
+anchors_preset = 5
+anchor_top = 0.0
+anchor_bottom = 0.0
+offset_left = -32.0
+offset_top = 0.0
+offset_right = 32.0
+offset_bottom = 64.0
+grow_vertical = 1
+type = "armor"
+
+[node name="Item_rect6" parent="TextureRect" instance=ExtResource("3_epc25")]
+layout_mode = 1
+anchors_preset = 7
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = -42.0
+offset_top = -98.0
+offset_right = 22.0
+offset_bottom = -34.0
+grow_vertical = 0
+type = "armor"
+
+[node name="PanelContainer" type="PanelContainer" parent="TextureRect"]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+grow_horizontal = 0
+
+[node name="GridContainer" type="GridContainer" parent="TextureRect/PanelContainer"]
+layout_mode = 2
+script = SubResource("GDScript_k6qfn")
+
 [node name="InventoryContainer" type="PanelContainer" parent="."]
+self_modulate = Color(1, 1, 1, 0)
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_bottom = -30.0
 grow_horizontal = 2
 grow_vertical = 2
 
 [node name="InventoryMenu" type="GridContainer" parent="InventoryContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
-size_flags_vertical = 4
+size_flags_vertical = 8
 script = ExtResource("1_2br22")
+
+[node name="Drag_preview" parent="InventoryContainer" instance=ExtResource("5_bkpgx")]
+layout_mode = 2
