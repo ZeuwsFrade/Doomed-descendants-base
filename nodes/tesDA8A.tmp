@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=4 uid="uid://cdrocpgfyd2wj"]
+[gd_scene load_steps=8 format=4 uid="uid://cdrocpgfyd2wj"]
 
 [ext_resource type="Texture2D" uid="uid://ddof5dx00xr8n" path="res://TileMap/BaseSet.png" id="1_f2oej"]
 [ext_resource type="Script" path="res://scripts/tile_map_layer.gd" id="2_5832x"]
 [ext_resource type="PackedScene" uid="uid://b4w5keovehv8e" path="res://nodes/player.tscn" id="3_xa4kk"]
 [ext_resource type="PackedScene" uid="uid://djaprkn4j65pf" path="res://nodes/enemy.tscn" id="4_dei5p"]
+[ext_resource type="PackedScene" uid="uid://b8r6tjf646i4j" path="res://nodes/UI/inventory.tscn" id="5_ewgyt"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_khuqa"]
 texture = ExtResource("1_f2oej")
@@ -1217,3 +1218,9 @@ tile_map = NodePath("../../TileMapLayer")
 [node name="Enemy3" parent="Entities" node_paths=PackedStringArray("tile_map") instance=ExtResource("4_dei5p")]
 position = Vector2(26, 119)
 tile_map = NodePath("../../TileMapLayer")
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="Inventory" parent="UI" instance=ExtResource("5_ewgyt")]
+
+[editable path="UI/Inventory"]

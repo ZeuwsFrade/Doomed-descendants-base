@@ -1,0 +1,38 @@
+[gd_scene load_steps=2 format=3 uid="uid://q4nbck60k6q7"]
+
+[sub_resource type="GDScript" id="GDScript_xfurh"]
+script/source = "extends ColorRect
+
+@onready var item_icon = %Item_icon
+
+func display_item(item):
+	if item:
+		item_icon.texture = load(\"res://Icons/%s\" % item.icon)
+	else:
+		item_icon.texture = null
+"
+
+[node name="Item_rect" type="ColorRect" groups=["Items_slot"]]
+custom_minimum_size = Vector2(64, 64)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -72.0
+offset_top = -72.0
+offset_right = -8.0
+offset_bottom = -8.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.593134, 0.593134, 0.593134, 1)
+script = SubResource("GDScript_xfurh")
+
+[node name="Item_icon" type="TextureRect" parent="."]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 56.0
+offset_bottom = 56.0
+expand_mode = 2

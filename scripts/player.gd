@@ -1,4 +1,4 @@
-extends "res://scripts/characters_base.gd"
+extends CharecterBase
 #@onready var enemy = get_tree().get_nodes_in_group("enemy")
 var enemy_sel
 var visible_objs = []
@@ -39,7 +39,6 @@ func _input(event):
 				_turn_end()
 	if event.is_action_pressed("RMB"):
 		_turn_end()
-		
 	if !current_path.is_empty(): return
 	if !is_my_turn: return
 

@@ -1,6 +1,8 @@
 extends CharacterBody2D
 
-@export var tile_map: TileMapLayer
+class_name CharecterBase
+
+@onready var tile_map = %MovementLayer
 @export var SPEED = 200
 var current_path: Array[Vector2i]
 
