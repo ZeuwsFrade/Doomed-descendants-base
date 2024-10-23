@@ -3,18 +3,33 @@
     "name": "Кожаная куртка",
     "description": "Обычная кожаная куртка",
 	"icon": "jacket_icon.png",
-	"type": "armor"
+	"type": "armour",
+	"class": "body"
   },
   "leather_boots": {
     "name": "Кожаные сапоги",
     "description": "Обычные кожаные сапоги",
 	"icon": "boots_icon.png",
-	"type": "armor"
+	"type": "armour",
+	"class": "legs"
   },
   "sword": {
     "name": "Меч",
     "description": "Старый ржавый меч",
 	"icon": "sword_icon.png",
 	"type": "weapon"
+  },
+  "shield": {
+    "name": "Щит",
+    "description": "Старый ржавый щит",
+	"icon": "sword_icon.png",
+	"type": "weapon"
+  },
+  "helmet": {
+    "name": "Шлем",
+    "description": "Старый ржавый шлем",
+	"icon": "sword_icon.png",
+	"type": "armour",
+	"class": "head"
   }
 }

@@ -8,7 +8,7 @@ var slots: int = cols * rows
 var items: Array = []
 
 func _ready():
-	for i in range(slots):
+	for i in range(len(GlobalInventory.items)):
 		items.append({})
 	items[0] = GlobalInventory.get_item_by_key("sword")
 	items[1] = GlobalInventory.get_item_by_key("leather_boots")
