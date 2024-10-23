@@ -1,4 +1,4 @@
-extends CharecterBase
+extends "res://scripts/characters_base.gd"
 #@onready var enemy = get_tree().get_nodes_in_group("enemy")
 var enemy_sel
 var visible_objs = []
