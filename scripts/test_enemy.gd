@@ -1,9 +1,9 @@
-extends "res://scripts/characters_base.gd"
+extends CharecterBase
 var beta_current_path: Array[Vector2i]
 var next_pos = Vector2i()
 var past_pos = Vector2i()
 
-var range = 1 # можно цикл е
+var _range = 1 # можно цикл е
 var is_turn = false
 
 var vision_range = 6 #через метадату сделать размер vision
@@ -15,8 +15,6 @@ var triggered = false
 
 func _deploy() -> void:
 	visible = false
-	health = 100
-	damage = 10
 
 func _turn_end():
 	GlobalBusyPoint._turn()
@@ -32,7 +30,7 @@ func  _moving():
 	_moving()
 
 func _attack():
-	player._take_damage( damage, self )
+	player._take_damage( randf_range(0, 3), self )
 	_turn_end()
 
 func _move():
@@ -43,8 +41,8 @@ func _move():
 	if beta_current_path.is_empty():
 		_turn_end()
 		return
-	if beta_current_path.size() > range:
-		beta_current_path.resize(range)
+	if beta_current_path.size() > _range:
+		beta_current_path.resize(_range)
 		next_pos = beta_current_path.back()
 	if tile_map.is_point_available(tile_map.map_to_local(beta_current_path.back())):
 		current_path = beta_current_path

@@ -3,7 +3,7 @@ extends Node
 var global_busy_point = []
 
 const tile_width = 64
-
+#enum parts {Head, Legs, Arms, Body}
 var objects
 var i = 0
 
