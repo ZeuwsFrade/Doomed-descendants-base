@@ -4,10 +4,8 @@ class_name CharecterBase
 
 #class Parts:
 #	var Head: bool
-var Head = true
-var Arms = true
-var Legs = true
-var Body = true
+
+var Parts = { Head = true, Arms = true, Legs = true, Body = true }
 
 @onready var tile_map = %MovementLayer
 @export var SPEED = 200
@@ -39,25 +37,25 @@ func _deploy() -> void:
 
 func _random( part ):
 	var chance = 4
-	if part == 0:
+	if part == 0: # HEAD
 		chance = randi_range(0,4)
 		if chance == 0:
-			self.Head = false
+			self.Parts.Head = false
 			return true
-	elif part == 3:
+	elif part == 3: # Body
 		chance = randi_range(0,2)
 		if chance == 0:
-			self.Body = false
+			self.Parts.Body = false
 			return true
-	elif part == 2:
+	elif part == 2: # LEGS
 		chance = randi_range(0,2)
 		if chance == 0:
-			self.Legs = false
+			self.Parts.Legs = false
 			return true
-	elif part == 1:
+	elif part == 1: # ARMS
 		chance = randi_range(0,2)
 		if chance == 0:
-			self.Arms = false
+			self.Parts.Arms = false
 			return true
 	return false
 
@@ -65,7 +63,7 @@ func _take_damage( part, attacker ):
 	if !_random(part):
 		print(attacker.name, " attack missed")
 		return
-	if (!self.Head or !self.Body):
+	if (!self.Parts.Head or !self.Parts.Body):
 		if self != player2:
 			_die()
 	OnDamaged.emit(part, attacker)

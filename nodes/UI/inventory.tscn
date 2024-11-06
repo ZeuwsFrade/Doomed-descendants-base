@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://scripts/inventory_menu.gd" id="1_2br22"]
 [ext_resource type="Texture2D" uid="uid://buvxx027jtws7" path="res://Icons/Human_body.png" id="2_cp8yy"]
 [ext_resource type="PackedScene" uid="uid://q4nbck60k6q7" path="res://nodes/UI/items_slot.tscn" id="3_epc25"]
-[ext_resource type="PackedScene" uid="uid://b5ie0ptayk8m" path="res://nodes/UI/drag_preview.tscn" id="5_bkpgx"]
+[ext_resource type="PackedScene" path="res://nodes/UI/drag_preview.tscn" id="5_bkpgx"]
 
 [sub_resource type="GDScript" id="GDScript_k6qfn"]
 script/source = "extends ContainerSlot

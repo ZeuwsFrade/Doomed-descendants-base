@@ -30,15 +30,18 @@ func _moving():
 func _turn_start():
 	is_my_turn = true
 
+var attack_menu_check
+
 func _input(event):
 	if event.is_action_pressed("LMB"):
 		if get_tree().get_nodes_in_group("selected").size() > 0:
 			enemy_sel = get_tree().get_nodes_in_group("selected")[0]
 			if enemy_sel.global_position.distance_squared_to(self.global_position) <= GlobalBusyPoint.tile_width*GlobalBusyPoint.tile_width:
 				#enemy_sel._take_damage(10, self)
+				if attack_menu_check != null: return
 				var menu = attack_menu.instantiate()
+				attack_menu_check = menu
 				enemy_sel.add_child(menu)
-				#_turn_end()
 	if event.is_action_pressed("RMB"):
 		_turn_end()
 	if !current_path.is_empty(): return

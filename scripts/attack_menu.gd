@@ -10,16 +10,16 @@ extends Control
 
 func _ready() -> void:
 	btn_body.disabled = true
-	if !get_parent().Head:
+	if !get_parent().Parts.Head:
 		btn_head.disabled = true
 		btn_body.disabled = false
-	if !get_parent().Arms:
+	if !get_parent().Parts.Arms:
 		btn_arms.disabled = true
 		btn_body.disabled = false
-	if !get_parent().Legs:
+	if !get_parent().Parts.Legs:
 		btn_legs.disabled = true
 		btn_body.disabled = false
-	if !get_parent().Body:
+	if !get_parent().Parts.Body:
 		btn_body.disabled = true
 
 func _on_arms_pressed() -> void:
@@ -28,7 +28,6 @@ func _on_arms_pressed() -> void:
 	queue_free()
 
 func _on_legs_pressed() -> void:
-	print("leg")
 	get_parent()._take_damage(2, player)
 	player._turn_end()
 	queue_free()
@@ -39,7 +38,7 @@ func _on_head_pressed() -> void:
 	queue_free()
 
 func _on_random_pressed() -> void:
-	get_parent()._take_damage(randf_range(0, 3), player) #body included, include destroyed parts
+	get_parent()._take_damage(randi_range(0, 3), player) #body included, include destroyed parts
 	player._turn_end()
 	queue_free()
 
