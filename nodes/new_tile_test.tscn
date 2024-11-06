@@ -98,13 +98,13 @@ script = ExtResource("2_crv77")
 [node name="Entities" type="Node2D" parent="."]
 
 [node name="Player" parent="Entities" instance=ExtResource("3_f3dg3")]
-position = Vector2(97, 97)
+position = Vector2(96, 96)
 
 [node name="Enemy" parent="Entities" instance=ExtResource("4_h242b")]
 position = Vector2(736, 160)
 
 [node name="Enemy2" parent="Entities" instance=ExtResource("4_h242b")]
-position = Vector2(159, 544)
+position = Vector2(160, 544)
 
 [node name="UI" type="CanvasLayer" parent="."]
 
