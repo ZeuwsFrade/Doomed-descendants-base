@@ -10,13 +10,10 @@ var vision_range = 6 #через метадату сделать размер vi
 
 var triggered = false
 
-var available_part = []# for attack
-
 @onready var player = get_tree().get_nodes_in_group("player")[0]
 @onready var mobs = get_tree().get_nodes_in_group("enemy")
 
 func _deploy() -> void:
-	available_part.resize(4)
 	visible = false
 
 func _turn_end():
@@ -33,12 +30,7 @@ func  _moving():
 	_moving()
 	
 func _attack():
-	var i = 0
-	for el in player.Parts:
-		#if el == true:
-			#available_part[i] = 
-		i = i + 1
-	player._take_damage( randi_range(0, 3), self )
+	player._take_damage( null, self )
 	_turn_end()
 
 func _move():
