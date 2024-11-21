@@ -3,7 +3,7 @@ extends CharacterBody2D
 class_name CharecterBase
 
 var Parts = { 
-	Body = {is_exist = true, chance = 0.75, text = "Тело"}, # 0 = always body
+	Body = {is_exist = true, chance = 0.75, text = "Тело"}, #добавить параметр "important"?, который при BrokePart убивает персонажа (переосмысление body и head)
 	Head = {is_exist = true, chance = 0.1, text = "Голова"},
 	Arms = {is_exist = true, chance = 0.5, text = "Руки"},
 	Legs = {is_exist = true, chance = 0.5, text = "Ноги"},
@@ -74,11 +74,11 @@ func _random_part():
 func _take_damage( part, attacker ):
 	if part == null:
 		var rnd_part = _random_part()
-		if randf() < Parts[rnd_part].chance:
+		if randf() <= Parts[rnd_part].chance:
 			_part_destroy(rnd_part)
 	else:
 		if _can_attacked_part(part):
-			if randf() < Parts[part].chance:
+			if randf() <= Parts[part].chance:
 				_part_destroy(part)
 	
 
