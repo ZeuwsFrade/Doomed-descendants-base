@@ -2,8 +2,13 @@ extends CharacterBody2D
 
 class_name CharecterBase
 
-var Parts = { 
-	Body = {is_exist = true, chance = 0.75, vital = true, text = "Тело"}, #Обязательный параметр (Body)!
+#Body является обязательным параметром! (его можно изменять, но название Body должно остаться)
+#is_exist - внутрення функция для проверки сломана ли конечность
+#chance - вероятность попадания по конечности random(0,1) <= chance
+#vital - жизненонеобходима ли конечность. Если true, то после уничтожения её - сущность умрёт
+#text - название на требуемом языке
+@export var Parts = { 
+	Body = {is_exist = true, chance = 0.75, vital = true, text = "Тело"},
 	Head = {is_exist = true, chance = 0.1, vital = true, text = "Голова"},
 	Arms = {is_exist = true, chance = 0.5, vital = false, text = "Руки"},
 	Legs = {is_exist = true, chance = 0.5, vital = false, text = "Ноги"},
