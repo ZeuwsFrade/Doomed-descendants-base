@@ -3,10 +3,10 @@ extends CharacterBody2D
 class_name CharecterBase
 
 var Parts = { 
-	Body = {is_exist = true, chance = 0.75, text = "Тело"}, #добавить параметр "important"?, который при BrokePart убивает персонажа (переосмысление body и head)
-	Head = {is_exist = true, chance = 0.1, text = "Голова"},
-	Arms = {is_exist = true, chance = 0.5, text = "Руки"},
-	Legs = {is_exist = true, chance = 0.5, text = "Ноги"},
+	Body = {is_exist = true, chance = 0.75, vital = true, text = "Тело"}, #Обязательный параметр (Body)!
+	Head = {is_exist = true, chance = 0.1, vital = true, text = "Голова"},
+	Arms = {is_exist = true, chance = 0.5, vital = false, text = "Руки"},
+	Legs = {is_exist = true, chance = 0.5, vital = false, text = "Ноги"},
 }
 
 @onready var tile_map = %MovementLayer
@@ -40,6 +40,8 @@ func _deploy() -> void:
 	pass
 	
 func _can_attacked_body():#not include is_exist for body
+	if Parts.size() == 1:
+		return true
 	for i in Parts:
 		if !Parts[i].is_exist:
 				return true
@@ -55,11 +57,11 @@ func _can_attacked_part(part):
 	return false
 
 func _on_part_broke(part):
-	print(self.name + " " + Parts[part].text + " is destroyed")
+	print(self.name + "`s " + Parts[part].text + " is destroyed")
 
 func _part_destroy(part):
 	Parts[part].is_exist = false
-	if part == "Body" or part == "Head":
+	if Parts[part].vital:
 		_die()
 	OnPartBroke.emit(part)
 
