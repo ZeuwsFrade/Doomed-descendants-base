@@ -26,9 +26,6 @@ signal OnDead()
 #signal TurnEnd()
 #signal TurnStart()
 
-@onready var player2 = get_tree().get_nodes_in_group("player")[0]
-
-
 func _on_damaged(dmg, attacker):
 	
 	print(attacker.name, " нанёс ", dmg, " урона ", self.name)
