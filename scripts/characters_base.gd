@@ -58,7 +58,7 @@ func _can_attacked_part(part):
 		if Parts[part].is_exist:
 			return true
 	else:
-		Parts[part]["check"].call()
+		return Parts[part]["check"].call()
 	return false
 
 func _on_part_broke(part):
