@@ -6,7 +6,7 @@ class_name CharecterBase
 #chance - вероятность попадания по конечности random(0,1) <= chance
 #vital - жизненонеобходима ли конечность. Если true, то после уничтожения её - сущность умрёт
 #text - название на требуемом языке
-#check - функция вызывается специфической проверки возможности атаки конечности
+#check - функция специфической проверки возможности слома конечности
 @export var Parts = { 
 	Body = {is_exist = true, chance = 0.75, vital = true, text = "Тело", check = is_some_part_broke}, #Сделать фигню чтоб шанс мог изменятся от внешних источников (предметы, и т.д.).
 	Head = {is_exist = true, chance = 0.1, vital = true, text = "Голова"},
@@ -26,11 +26,10 @@ signal OnDead()
 #signal TurnEnd()
 #signal TurnStart()
 
-func _on_damaged(dmg, attacker):
-	
+func _on_damaged(dmg, attacker) -> void:
 	print(attacker.name, " нанёс ", dmg, " урона ", self.name)
 
-func _on_dead():
+func _on_dead() -> void:
 	print(self.name, " погиб")
 
 func _ready() -> void:
@@ -39,10 +38,10 @@ func _ready() -> void:
 	connect("OnDead", _on_dead)
 	_deploy()
 	
-func _deploy() -> void:
+func _deploy() -> void: #ready, но для дочерних нодов.
 	pass
 	
-func is_some_part_broke():
+func is_some_part_broke() -> bool:
 	if Parts.size() == 1:
 		return true
 	for i in Parts:
@@ -50,15 +49,15 @@ func is_some_part_broke():
 				return true
 	return false
 
-func _can_attacked_part(part):
-	if !Parts[part].has("check"):
-		if Parts[part].is_exist:
+func can_destroy_part(part) -> bool:
+	if Parts[part].is_exist:
+		if Parts[part].has("check"):
+			return Parts[part]["check"].call()
+		else:
 			return true
-	else:
-		return Parts[part]["check"].call()
 	return false
 
-func _on_part_broke(part):
+func _on_part_broke(part) -> void:
 	print(self.name + "`s " + Parts[part].text + " is destroyed")
 
 func _part_destroy(part):
@@ -67,25 +66,26 @@ func _part_destroy(part):
 		_die()
 	OnPartBroke.emit(part)
 
-func _random_part():
+func random_part() -> String:
 	var i = Parts.keys().pick_random()
 	while(true):
-		if _can_attacked_part(i):
+		if can_destroy_part(i):
 			return i
 		else:
 			i = Parts.keys().pick_random()
+	return ""
 
-func _take_damage( part, attacker ):
+func _take_damage( part, attacker ) -> void:
 	if part == null:
-		var rnd_part = _random_part()
+		var rnd_part = random_part()
 		if randf() <= Parts[rnd_part].chance:
 			_part_destroy(rnd_part)
 	else:
-		if _can_attacked_part(part):
+		if can_destroy_part(part):
 			if randf() <= Parts[part].chance:
 				_part_destroy(part)
 	
 
-func _die():
+func _die() -> void:
 	OnDead.emit()
 	queue_free()

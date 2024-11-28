@@ -7,11 +7,11 @@ extends Control
 func _ready() -> void:
 	for el in get_parent().Parts:
 		var btn = Button.new()
-		if !get_parent()._can_attacked_part(el):
+		if !get_parent().can_destroy_part(el):
 			btn.disabled = true
 		btn.text = get_parent().Parts[el].text
-		container.add_child(btn)
 		btn.connect("pressed", _pressed.bind(el))
+		container.add_child(btn)
 
 func _pressed(part) -> void: #part is string
 	get_parent()._take_damage(part, player)
