@@ -27,12 +27,16 @@ func _moving():
 	if global_position == target_position:
 		current_path.pop_front()
 	_moving()
-
+	
 func _attack():
+<<<<<<< HEAD
 	var weapon = DamageSystem.Weapon.new(randi_range(1, 4), DamageSystem.DamageType.PHYSICAL)
 	var result = DamageSystem.calculate_damage(self, player, weapon)
 	if result.hit_success:
 		player.take_damage(result.damage_dealt, self)
+=======
+	player._take_damage( null, self )
+>>>>>>> origin/master
 	_turn_end()
 
 func _move():

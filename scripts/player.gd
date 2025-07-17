@@ -30,6 +30,7 @@ func _moving():
 func _turn_start():
 	is_my_turn = true
 
+<<<<<<< HEAD
 var current_weapon = DamageSystem.Weapon.new(10, DamageSystem.DamageType.PHYSICAL)
 
 #func _show_attack_menu(enemy):
@@ -38,16 +39,28 @@ var current_weapon = DamageSystem.Weapon.new(10, DamageSystem.DamageType.PHYSICA
 	#menu.global_position = get_viewport().get_visible_rect().size / 2
 	#menu.setup(self, enemy)
 
+=======
+var attack_menu_check
+>>>>>>> origin/master
 
 func _input(event):
 	if event.is_action_pressed("LMB"):
 		if get_tree().get_nodes_in_group("selected").size() > 0:
 			enemy_sel = get_tree().get_nodes_in_group("selected")[0]
 			if enemy_sel.global_position.distance_squared_to(self.global_position) <= GlobalBusyPoint.tile_width*GlobalBusyPoint.tile_width:
+<<<<<<< HEAD
+=======
+				#enemy_sel._take_damage(10, self)
+				if attack_menu_check != null: return
+>>>>>>> origin/master
 				var menu = attack_menu.instantiate()
+				attack_menu_check = menu
 				enemy_sel.add_child(menu)
+<<<<<<< HEAD
 				menu.setup(self, enemy_sel)
 				#_turn_end()
+=======
+>>>>>>> origin/master
 	if event.is_action_pressed("RMB"):
 		_turn_end()
 	if !current_path.is_empty(): return

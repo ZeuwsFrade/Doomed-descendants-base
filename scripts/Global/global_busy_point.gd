@@ -7,10 +7,20 @@ const tile_width = 64
 var objects
 var i = 0
 
-@onready var tilemap = get_tree().get_nodes_in_group("TileMap")[0]
-@onready var player = get_tree().get_nodes_in_group("player")[0]
+var tilemap
+var player
+
+func _ready():
+	if get_tree().get_node_count_in_group("TileMap")>0 and get_tree().get_node_count_in_group("player")>0:
+		tilemap = get_tree().get_nodes_in_group("TileMap")[0]
+		player = get_tree().get_nodes_in_group("player")[0]
+	else:
+		tilemap = null
+		player = null
 
 func _turn():
+	if tilemap == null or player == null:
+		return
 	objects = get_tree().get_nodes_in_group("turn")
 	
 	if i < objects.size()-1:
