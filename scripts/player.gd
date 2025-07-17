@@ -1,4 +1,4 @@
-extends CharecterBase
+extends CharacterBase
 #@onready var enemy = get_tree().get_nodes_in_group("enemy")
 var enemy_sel
 var visible_objs = []
@@ -30,14 +30,23 @@ func _moving():
 func _turn_start():
 	is_my_turn = true
 
+var current_weapon = DamageSystem.Weapon.new(10, DamageSystem.DamageType.PHYSICAL)
+
+#func _show_attack_menu(enemy):
+	#var menu = attack_menu.instantiate()
+	#get_tree().current_scene.add_child(menu)
+	#menu.global_position = get_viewport().get_visible_rect().size / 2
+	#menu.setup(self, enemy)
+
+
 func _input(event):
 	if event.is_action_pressed("LMB"):
 		if get_tree().get_nodes_in_group("selected").size() > 0:
 			enemy_sel = get_tree().get_nodes_in_group("selected")[0]
 			if enemy_sel.global_position.distance_squared_to(self.global_position) <= GlobalBusyPoint.tile_width*GlobalBusyPoint.tile_width:
-				#enemy_sel._take_damage(10, self)
 				var menu = attack_menu.instantiate()
 				enemy_sel.add_child(menu)
+				menu.setup(self, enemy_sel)
 				#_turn_end()
 	if event.is_action_pressed("RMB"):
 		_turn_end()

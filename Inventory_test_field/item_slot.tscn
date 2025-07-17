@@ -1,0 +1,18 @@
+[gd_scene load_steps=2 format=3 uid="uid://jkqwe30nm1d2"]
+
+[ext_resource type="Script" path="res://Inventory_test_field/item_slot.gd" id="1_be8lk"]
+
+[node name="Item_slot" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_be8lk")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+custom_minimum_size = Vector2(86, 86)
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0

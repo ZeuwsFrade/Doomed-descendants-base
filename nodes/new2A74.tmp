@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=4 uid="uid://bs563br8t750w"]
+[gd_scene load_steps=8 format=4 uid="uid://bs563br8t750w"]
 
 [ext_resource type="Texture2D" uid="uid://bfwll321mbqmg" path="res://TileMap/Base_tilemap.png" id="1_elbll"]
 [ext_resource type="Script" path="res://scripts/tile_map_layer.gd" id="2_crv77"]
+[ext_resource type="PackedScene" uid="uid://b8r6tjf646i4j" path="res://nodes/UI/inventory.tscn" id="2_rf53n"]
 [ext_resource type="PackedScene" uid="uid://b4w5keovehv8e" path="res://nodes/player.tscn" id="3_f3dg3"]
 [ext_resource type="PackedScene" uid="uid://djaprkn4j65pf" path="res://nodes/enemy.tscn" id="4_h242b"]
 
@@ -86,7 +87,7 @@ custom_data_layer_0/name = "Type"
 custom_data_layer_0/type = 4
 sources/0 = SubResource("TileSetAtlasSource_wlerq")
 
-[node name="Test_level" type="Node2D"]
+[node name="New_tile_test" type="Node2D"]
 
 [node name="MovementLayer" type="TileMapLayer" parent="." groups=["TileMap"]]
 unique_name_in_owner = true
@@ -106,3 +107,8 @@ position = Vector2(801, 96)
 position = Vector2(160, 544)
 
 [node name="UI" type="CanvasLayer" parent="."]
+
+[node name="Inventory" parent="UI" instance=ExtResource("2_rf53n")]
+visible = false
+
+[editable path="UI/Inventory"]

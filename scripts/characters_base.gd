@@ -1,37 +1,39 @@
 extends CharacterBody2D
+class_name CharacterBase
 
-class_name CharecterBase
-
-#class Parts:
-#	var Head: bool
-var Head = true
-var Arms = true
-var Legs = true
-var Body = true
+var body_parts = {
+	"Head": true,
+	"Arms": true,
+	"Legs": true,
+	"Body": true
+}
 
 @onready var tile_map = %MovementLayer
 @export var SPEED = 200
 var current_path: Array[Vector2i]
 
 var is_my_turn = true
+var health: int = 100
+var max_health: int = 100
 
-signal OnDamaged( dmg, attacker )
-signal OnDead()
+signal on_damaged(damage: int, attacker, part_destroyed: String)
+signal on_dead()
 #signal TurnEnd()
 #signal TurnStart()
 
 @onready var player2 = get_tree().get_nodes_in_group("player")[0]
 
 
-func _on_damaged(dmg, attacker):
+func _on_damaged(dmg, attacker, part_destroyed):
 	print(attacker.name, " нанёс ", dmg, " урона ", self.name)
+	print(part_destroyed)
 
 func _on_dead():
 	print(self.name, " погиб")
 
 func _ready() -> void:
-	connect("OnDamaged", _on_damaged)
-	connect("OnDead", _on_dead)
+	connect("on_damaged", _on_damaged)
+	connect("on_dead", _on_dead)
 	_deploy()
 	
 func _deploy() -> void:
@@ -61,17 +63,27 @@ func _random( part ):
 			return true
 	return false
 
-func _take_damage( part, attacker ):
-	if !_random(part):
-		print(attacker.name, " attack missed")
-		return
-	if (!self.Head or !self.Body):
-		if self != player2:
-			_die()
-	OnDamaged.emit(part, attacker)
-	#if health < 0:
-		#_die()
+func take_damage(damage: int, attacker) -> void:
+	if(attacker is CharacterBase):
+		health -= damage
+		var part_destroyed = check_body_part_destroyed()
+	
+		emit_signal("on_damaged", damage, attacker, part_destroyed)
+	
+		if health <= 0:
+			die()
 
-func _die():
-	OnDead.emit()
+func check_body_part_destroyed() -> String:
+	var parts = body_parts.keys()
+	for part in parts:
+		if body_parts[part] and randf() <= 0.2:  # 20% шанс уничтожить часть
+			body_parts[part] = false
+			return part
+	return "No"
+
+func die() -> void:
+	emit_signal("on_dead")
 	queue_free()
+
+func has_body_part(part: String) -> bool:
+	return body_parts.get(part, false)

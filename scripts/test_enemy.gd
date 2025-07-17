@@ -1,13 +1,12 @@
-extends CharecterBase
+extends CharacterBase  # Исправлено написание (было CharecterBase)
+
 var beta_current_path: Array[Vector2i]
 var next_pos = Vector2i()
 var past_pos = Vector2i()
 
-var _range = 1 # можно цикл е
+var _range = 1
 var is_turn = false
-
-var vision_range = 6 #через метадату сделать размер vision
-
+var vision_range = 6
 var triggered = false
 
 @onready var player = get_tree().get_nodes_in_group("player")[0]
@@ -19,7 +18,7 @@ func _deploy() -> void:
 func _turn_end():
 	GlobalBusyPoint._turn()
 
-func  _moving():
+func _moving():
 	if current_path.is_empty():
 		_turn_end()
 		return
@@ -30,20 +29,26 @@ func  _moving():
 	_moving()
 
 func _attack():
-	player._take_damage( randf_range(0, 3), self )
+	var weapon = DamageSystem.Weapon.new(randi_range(1, 4), DamageSystem.DamageType.PHYSICAL)
+	var result = DamageSystem.calculate_damage(self, player, weapon)
+	if result.hit_success:
+		player.take_damage(result.damage_dealt, self)
 	_turn_end()
 
 func _move():
 	beta_current_path = tile_map.astar.get_id_path(
 		tile_map.local_to_map(global_position),
 		tile_map.local_to_map(player.global_position)
-		).slice(1)
+	).slice(1)
+	
 	if beta_current_path.is_empty():
 		_turn_end()
 		return
+		
 	if beta_current_path.size() > _range:
 		beta_current_path.resize(_range)
 		next_pos = beta_current_path.back()
+		
 	if tile_map.is_point_available(tile_map.map_to_local(beta_current_path.back())):
 		current_path = beta_current_path
 		_moving()
@@ -54,6 +59,7 @@ func _turn_start():
 	if !triggered: 
 		_turn_end() 
 		return
+		
 	if global_position.distance_squared_to(player.global_position) <= GlobalBusyPoint.tile_width*GlobalBusyPoint.tile_width:
 		_attack()
 	else:
@@ -68,7 +74,7 @@ func _on_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
 			add_to_group("selected")
 			print(self.name, " is selected")
 
-func _raycast( pos_end: Vector2 ):
+func _raycast(pos_end: Vector2):
 	var New_Intersection = PhysicsRayQueryParameters2D.create(self.position, pos_end)
 	New_Intersection.exclude = [self, player]
 	New_Intersection.collision_mask = pow(2, 1-1)
@@ -78,7 +84,7 @@ func _raycast( pos_end: Vector2 ):
 const stalking_base = 10
 var stalking = stalking_base
 
-func _trigger( is_triggered: bool):
+func _trigger(is_triggered: bool):
 	if !is_triggered and triggered:
 		if stalking > 0:
 			stalking = stalking - 1

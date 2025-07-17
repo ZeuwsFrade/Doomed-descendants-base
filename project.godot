@@ -18,8 +18,6 @@ config/icon="res://icon.svg"
 [autoload]
 
 GlobalBusyPoint="*res://scripts/Global/global_busy_point.gd"
-GlobalInventory="*res://scripts/Global/global_inventory.gd"
-InventoryAccess="*res://scripts/Global/inventory_access.gd"
 
 [display]
 
